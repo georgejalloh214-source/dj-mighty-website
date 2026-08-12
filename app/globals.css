@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 228 40% 3%;
+    --foreground: 210 40% 98%;
+    --card: 228 35% 6%;
+    --card-foreground: 210 40% 98%;
+    --popover: 228 35% 6%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 214 100% 59%;
+    --primary-foreground: 228 40% 3%;
+    --secondary: 228 30% 10%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 228 30% 12%;
+    --muted-foreground: 217 20% 65%;
+    --accent: 190 95% 55%;
+    --accent-foreground: 228 40% 3%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 222 30% 16%;
+    --input: 222 30% 16%;
+    --ring: 214 100% 59%;
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-color: #05060d;
+  }
+}
+
+/* ---------- 3D helpers ---------- */
+.perspective-1200 {
+  perspective: 1200px;
+}
+.perspective-2000 {
+  perspective: 2000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* ---------- Atmosphere ---------- */
+.noise-overlay::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.glow-blue {
+  box-shadow: 0 0 40px -8px rgba(47, 123, 255, 0.55), 0 0 120px -20px rgba(51, 214, 255, 0.35);
+}
+
+.text-glow {
+  text-shadow: 0 0 30px rgba(47, 123, 255, 0.65), 0 0 80px rgba(51, 214, 255, 0.35);
+}
+
+.grid-floor {
+  background-image: linear-gradient(rgba(47, 123, 255, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47, 123, 255, 0.14) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: rotateX(64deg) scale(2.4);
+  transform-origin: center top;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 75%);
+}
+
+/* ---------- Vinyl ---------- */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 9s linear infinite;
+}
+
+.vinyl-grooves {
+  background: repeating-radial-gradient(
+    circle at center,
+    #0b0d16 0px,
+    #0b0d16 3px,
+    #141827 4px,
+    #0b0d16 6px
+  );
+}
+
+/* ---------- Marquee ---------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 26s linear infinite;
+}
+
+/* ---------- Equalizer bars ---------- */
+@keyframes eq {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.eq-bar {
+  transform-origin: bottom;
+  animation: eq 1s ease-in-out infinite;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #05060d;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2f7bff, #33d6ff);
+  border-radius: 8px;
+}
+
+::selection {
+  background: rgba(47, 123, 255, 0.6);
+  color: white;
+}
